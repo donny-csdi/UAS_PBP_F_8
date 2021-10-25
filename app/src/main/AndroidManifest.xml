@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.databinding.elearning">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Elearning">
+        <activity
+            android:name=".EditActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProfilActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+
+        <receiver
+            android:name=".NotificationReceiver"
+            android:enabled="true" />
+
+        <activity
+            android:name=".list.PpknActivity"
+            android:exported="true" />
+        <activity
+            android:name=".list.SejarahActivity"
+            android:exported="true" />
+        <activity
+            android:name=".list.BindoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".list.BingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".list.MtkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MateriActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>
