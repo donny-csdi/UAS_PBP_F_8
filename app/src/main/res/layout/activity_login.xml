@@ -18,12 +18,12 @@
         android:textColor="#005E86"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:text="BimSmart"/>
+        android:text="@string/bimsmart"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Belajar bersama, Sukses bersama"
+        android:text="@string/belajar_bersama_sukses_bersama"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Email"
+            android:hint="@string/emailLogin"
             android:layout_marginBottom="20dp"/>
 
         <EditText
@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="Password"/>
+            android:hint="@string/passwordLogin"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login"
@@ -66,7 +66,7 @@
             android:layout_weight="1"
             android:layout_marginTop="20dp"
             app:backgroundTint = "#FFA500"
-            android:text="Login" />
+            android:text="@string/login" />
 
         <TextView
             android:id="@+id/register"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:textStyle="bold"
-            android:text="Belum punya akun ? Klik Disini"/>
+            android:text="@string/belum_punya_akun_klik_disini"/>
 
         <TextView
             android:id="@+id/forgotPass"
@@ -83,13 +83,13 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:text="Lupa Password ? Klik Disini" />
+            android:text="@string/lupa_password_klik_disini" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="UTS PBP"
+            android:text="@string/uas_pbp"
             android:layout_marginBottom="50dp"/>
 
 

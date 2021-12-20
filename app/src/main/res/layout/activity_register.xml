@@ -7,27 +7,56 @@
     android:background="#FBBBB9"
     tools:context=".RegisterActivity">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/register_picture"
+        android:layout_width="76dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/patrickkacamata1"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/change_picture_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/register_picture"
+        android:layout_marginTop="1dp"
+        android:text="@string/change_picture"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_picture" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="286dp"
+        android:layout_height="31dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="116dp"
-        android:text="Register Akun"
+        android:text="@string/register_akun"
         android:textAlignment="center"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="421dp"
-        android:layout_height="515dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="317dp"
+        android:layout_height="516dp"
         android:background="@drawable/layoutbg"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/change_picture_register"
+        app:layout_constraintVertical_bias="0.75">
 
         <EditText
             android:id="@+id/nama_lengkap"
@@ -36,7 +65,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="Nama Lengkap"
+            android:hint="@string/nama_lengkap"
             android:inputType="textPersonName" />
 
         <EditText
@@ -45,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="Alamat"
+            android:hint="@string/alamat"
             android:inputType="textPersonName" />
 
         <EditText
@@ -54,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="No Handphone"
+            android:hint="@string/no_handphone"
             android:inputType="phone" />
 
         <EditText
@@ -63,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textPersonName" />
 
         <EditText
@@ -72,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <Button
@@ -80,8 +109,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Daftar"
             android:onClick="sendOnChannel1"
+            android:text="@string/daftar"
             app:backgroundTint="#00C54F" />
 
         <TextView
@@ -89,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Sudah punya akun ? Login Sekarang"
+            android:text="@string/sudah_punya_akun_login_sekarang"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />

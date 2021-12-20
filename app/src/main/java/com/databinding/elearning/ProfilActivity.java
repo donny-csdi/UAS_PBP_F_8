@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,13 +24,13 @@ import com.google.firebase.firestore.ListenerRegistration;
 public class ProfilActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-
+    ImageView profil;
     TextView nama, alamat, nohp, email;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     Button logout;
     Button edit;
-    String userID;
+    String userID,pass;
 
 
     @Override
@@ -45,7 +46,7 @@ public class ProfilActivity extends AppCompatActivity {
         email = findViewById(R.id.emailProfil);
         logout = findViewById(R.id.logout);
         edit = findViewById(R.id.change);
-
+        profil = findViewById(R.id.imageView2);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 

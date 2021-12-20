@@ -19,4 +19,23 @@ Cras vehicula risus vel arcu placerat, eget laoreet quam sodales. Proin eu nulla
 Duis vel sapien id augue placerat hendrerit. Donec semper lacinia est, at semper arcu suscipit efficitur. Nullam eget efficitur quam. Praesent interdum nulla vitae risus luctus, eu accumsan eros dapibus. In dignissim in mauris id rhoncus. Nulla vel arcu et felis aliquet semper imperdiet quis ipsum. Donec eleifend massa tempor, tempus nibh eget, bibendum risus. Suspendisse potenti. Morbi eu ex blandit, mattis lorem vitae, faucibus ante. Vivamus id euismod nunc. Nunc vel rhoncus felis, quis feugiat tellus. Quisque mattis sem id leo scelerisque volutpat. Vivamus et urna lorem.
 
 Mauris auctor a ex ac euismod. Nunc a eros ac neque egestas elementum sit amet non ligula. Mauris id blandit tortor. Donec sed magna ut urna finibus fringilla. Aliquam erat volutpat. Donec ultricies tristique aliquam. Integer orci velit, condimentum eget bibendum quis, mattis pretium metus. Nunc sem nisl, semper id accumsan eu, tempor vitae lorem. Nulla mattis urna sit amet nibh dictum malesuada. Sed tincidunt vulputate urna vitae cursus.</string>
+    <string name="bimsmart">BimSmart</string>
+    <string name="belajar_bersama_sukses_bersama">Belajar bersama, Sukses bersama</string>
+    <string name="emailLogin">Email</string>
+    <string name="passwordLogin">Password</string>
+    <string name="login">Login</string>
+    <string name="belum_punya_akun_klik_disini">Belum punya akun ? Klik Disini</string>
+    <string name="lupa_password_klik_disini">Lupa Password ? Klik Disini</string>
+    <string name="uas_pbp">UAS PBP</string>
+    <string name="change_picture">Change Picture</string>
+    <string name="register_akun">Register Akun</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="alamat">Alamat</string>
+    <string name="no_handphone">No Handphone</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="daftar">Daftar</string>
+    <string name="sudah_punya_akun_login_sekarang">Sudah punya akun ? Login Sekarang</string>
+    <string name="buka_kamera">Buka kamera</string>
+    <string name="pilih_dari_galeri">Pilih dari galeri</string>
 </resources>

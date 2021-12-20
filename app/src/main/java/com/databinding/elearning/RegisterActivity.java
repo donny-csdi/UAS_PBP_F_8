@@ -3,15 +3,24 @@ package com.databinding.elearning;
 import static com.databinding.elearning.MyApplication.CHANNEL_1_ID;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,17 +35,26 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class RegisterActivity extends AppCompatActivity {
+    private static final int PERMISSION_REQUEST_CAMERA = 100;
+    private static final int CAMERA_REQUEST = 0;
+    private static final int GALLERY_PICTURE = 1;
+
     EditText nama, alamat, hp, password, email;
+    CircleImageView picture;
     Button register;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     TextView login;
     String userID;
     private NotificationManagerCompat notificationManager;
+    private Bitmap bitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         notificationManager = NotificationManagerCompat.from(this);
 
+        picture = findViewById(R.id.register_picture);
         nama = findViewById(R.id.nama_lengkap);
         alamat = findViewById(R.id.alamat);
         hp = findViewById(R.id.no_hp);
@@ -60,6 +79,49 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             finish();
         }
+
+        picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater layoutInflater = LayoutInflater.from(RegisterActivity.this);
+                View selectMediaView = layoutInflater
+                        .inflate(R.layout.layout_select_media, null);
+
+                final AlertDialog alertDialog = new AlertDialog
+                        .Builder(selectMediaView.getContext()).create();
+
+                Button btnKamera = selectMediaView.findViewById(R.id.btn_kamera);
+                Button btnGaleri = selectMediaView.findViewById(R.id.btn_galeri);
+
+                btnKamera.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (checkSelfPermission(Manifest.permission.CAMERA) ==
+                                PackageManager.PERMISSION_DENIED) {
+                            String[] permission = {Manifest.permission.CAMERA};
+                            requestPermissions(permission, PERMISSION_REQUEST_CAMERA);
+                        } else {
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, CAMERA_REQUEST);
+                        }
+
+                        alertDialog.dismiss();
+                    }
+                });
+
+                btnGaleri.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_PICK,
+                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, GALLERY_PICTURE);
+
+                        alertDialog.dismiss();
+                    }
+                });
+
+                alertDialog.setView(selectMediaView);
+                alertDialog.show();
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +177,64 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_REQUEST_CAMERA) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAMERA_REQUEST);
+            } else {
+                Toast.makeText(RegisterActivity.this, "Permission denied.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (data == null)
+            return;
+
+        if (resultCode == RESULT_OK && requestCode == GALLERY_PICTURE) {
+            Uri selectedImage = data.getData();
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(selectedImage);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (Exception e) {
+                Toast.makeText(RegisterActivity.this, e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
+            bitmap = (Bitmap) data.getExtras().get("data");
+        }
+
+        bitmap = getResizedBitmap(bitmap, 512);
+        picture.setImageBitmap(bitmap);
+    }
+
+    private Bitmap getResizedBitmap(Bitmap bitmap, int maxSize) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, width, height, true);
     }
 
     public void sendOnChannel1(View view) {
